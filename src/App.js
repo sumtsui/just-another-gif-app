@@ -6,14 +6,8 @@ import Trending from './components/trending';
 import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
-let APIKey = '';
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  // dev code
-  APIKey = require('./config');
-} else {
-  // production code
-  APIKey = process.env.REACT_APP_APIKEY;
-}
+
+let APIKey = process.env.REACT_APP_APIKEY || require('./config');
 
 class App extends Component {
   constructor() {
