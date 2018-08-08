@@ -6,7 +6,7 @@ import Trending from './components/trending';
 import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
-const APIKey = process.env.REACT_APP_APIKey || require('./config');
+const APIKey = process.env.REACT_APP_APIKey;
 // const APIKey = require('./config');
 
 class App extends Component {
