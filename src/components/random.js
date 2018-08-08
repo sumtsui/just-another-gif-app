@@ -75,7 +75,7 @@ class Random extends Component {
   }
 
   getRandom = (tag, id) => {
-    fetch(`http://api.giphy.com/v1/gifs/random?api_key=${this.props.APIKey}&tag=${tag}`)
+    fetch(`https://api.giphy.com/v1/gifs/random?api_key=${this.props.APIKey}&tag=${tag}`)
       .then(res => res.json())
       .then(res => res.data)
       .then(gif => {

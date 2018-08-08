@@ -6,8 +6,7 @@ import Trending from './components/trending';
 import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
-const APIKey = process.env.REACT_APP_APIKEY;
-// const APIKey = require('./config');
+const APIKey = process.env.REACT_APP_APIKEY || require('./config');
 
 class App extends Component {
   constructor() {
@@ -32,7 +31,7 @@ class App extends Component {
 
   getData = (q) => {
     this.setState({ loadingResult: true });
-    fetch(`http://api.giphy.com/v1/gifs/search?api_key=${APIKey}&q=${q}&limit=12`)
+    fetch(`https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&q=${q}&limit=12`)
       .then(res => res.json())
       .then(res => res.data)
       .then(gifs => this.setState({
@@ -44,7 +43,7 @@ class App extends Component {
 
   getTrending = () => {
     this.setState({ loadingTrending: true });
-    fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${APIKey}&limit=12`)
+    fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${APIKey}&limit=12`)
       .then(res => res.json())
       .then(res => {
         // console.log(res.data);
