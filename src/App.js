@@ -6,8 +6,8 @@ import Trending from './components/trending';
 import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
-// const APIKey = process.env.REACT_APP_APIKey || require('./config');
-const APIKey = require('./config');
+const APIKey = process.env.REACT_APP_APIKey || require('./config');
+// const APIKey = require('./config');
 
 class App extends Component {
   constructor() {
@@ -22,8 +22,6 @@ class App extends Component {
   }
 
   onSearch = (e, location, history) => {
-    if (process.env.REACT_APP_APIKEY) console.log('process.env.REACT_APP_APIKEY:', process.env.REACT_APP_APIKEY);
-    else console.log('no REACT_APP_APIKEY found');
     e.target.firstChild.value = '';
     e.preventDefault();
 
