@@ -98,7 +98,8 @@ module.exports = {
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       new webpack.DefinePlugin({
         'process.env': {
-          APIKey: process.env.REACT_APP_APIKEY
+          APIKey: process.env.REACT_APP_APIKEY,
+          NODE_ENV: process.env.NODE_ENV
         }
       })
     ],
