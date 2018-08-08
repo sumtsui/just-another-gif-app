@@ -7,13 +7,18 @@ import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
 
-// let APIKey = (process.env.REACT_APP_APIKEY) || require('./config');
 let APIKey = '';
-if (process.env.REACT_APP_APIKEY !== undefined) {
-  APIKey = process.env.REACT_APP_APIKEY;
-} else {
-  APIKey = require('./config');
+try {
+  APIKey = (process.env.REACT_APP_APIKEY) || require('./config');
+} catch (e) {
+  console.log('no config file found');
 }
+// let APIKey = '';
+// if (process.env.REACT_APP_APIKEY !== undefined) {
+//   APIKey = process.env.REACT_APP_APIKEY;
+// } else {
+//   APIKey = require('./config');
+// }
 
 class App extends Component {
   constructor() {
