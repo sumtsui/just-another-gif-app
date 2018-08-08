@@ -6,7 +6,14 @@ import Trending from './components/trending';
 import Random from './components/random';
 import SearchForm from './components/searchForm';
 import SearchResult from './components/searchResult';
-const APIKey = process.env.REACT_APP_APIKEY || require('./config');
+let APIKey = '';
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  // dev code
+  APIKey = require('./config');
+} else {
+  // production code
+  APIKey = process.env.REACT_APP_APIKEY;
+}
 
 class App extends Component {
   constructor() {
@@ -38,7 +45,7 @@ class App extends Component {
         result: gifs,
         loadingResult: false
       }))
-      .catch(e => console.log(e));
+      .catch(e => console.log('error getting gifs'));
   }
 
   getTrending = () => {
@@ -53,7 +60,7 @@ class App extends Component {
         trending: gifs,
         loadingTrending: false
       }))
-      .catch(e => console.log(e));
+      .catch(e => console.log('error getting gifs'));
   }
 
   getQuery = e => {

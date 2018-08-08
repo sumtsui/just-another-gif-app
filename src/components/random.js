@@ -94,7 +94,7 @@ class Random extends Component {
         });
       })
       .then(cards => this.setState({ cards }))
-      .catch(console.log)
+      .catch(e => console.log('error getting gifs'));
   }
 
   render() {
