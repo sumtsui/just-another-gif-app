@@ -1,6 +1,6 @@
 /*
 TODO
-  - do error handing
+  - do error handling
   - get loading indicator working properly
 */
 

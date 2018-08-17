@@ -35,9 +35,13 @@ class Random extends Component {
   }
 
   componentDidMount() {
-    this.props.cardTags.forEach((tag, i) => {
-      this.getRandom(tag, i);
-    });
+    // this.props.cardTags.forEach((tag, i) => {
+    //   this.getRandom(tag, i);
+    // });
+    this.getRandom(this.props.cardTags[0], 0);
+    this.getRandom(this.props.cardTags[1], 1);
+    this.getRandom(this.props.cardTags[2], 2);
+    this.getRandom(this.props.cardTags[3], 3);
   }
 
   handleClick = id => {
@@ -53,10 +57,19 @@ class Random extends Component {
       })
     });
     // still need work
-    if (this.state.cards[id].isEditing === true) this.getRandom(this.state.cards[id].tag, id);
+    if (this.state.cards[id].isEditing === true) {
+      this.getRandom(this.props.cardTags[id], id);
+    }
   }
 
   getRandom = (tag, id) => {
+    let arr = this.state.cards;
+    arr[id] = {
+      ...arr[id],
+      isLoading: true,
+      isEditing: false
+    };
+    this.setState({ cards: arr });
     fetch(`https://api.giphy.com/v1/gifs/random?api_key=${this.props.APIKey}&tag=${tag}`)
       .then(res => res.json())
       .then(res => res.data)
@@ -68,12 +81,8 @@ class Random extends Component {
         }
       })
       .then(card => {
-        return this.state.cards.map(i => {
-          if (i.id === id) {
-            i = card
-          }
-          return i;
-        });
+        arr[id] = card;
+        return arr;
       })
       .then(cards => this.setState({ cards }))
       .catch(e => console.log('error getting gifs'));

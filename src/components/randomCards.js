@@ -25,7 +25,7 @@ const randomCards = props =>
           </div>
           <div className="card-body">
             {(card.isLoading) ? 
-            <p>Loading...</p>
+            <div className='loader'></div>
             :
               <img
                 className="card-img-top"

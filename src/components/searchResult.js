@@ -17,7 +17,7 @@ class SearchResult extends Component {
     return (
       <div>
         {(this.props.loadingResult) ?
-          <p>Loading...</p> :
+          <div className='loader'></div> :
           <Gifs
             result={this.props.result}
             query={this.props.match.params.q}

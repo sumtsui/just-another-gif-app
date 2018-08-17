@@ -9,7 +9,7 @@ class Trending extends Component {
   render() {
     return (
       (this.props.loadingTrending) ? 
-      <p>Loading...</p> :
+      <div className='loader'></div> :
       <Gifs result={this.props.trending} />
     )
   }
