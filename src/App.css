@@ -18,6 +18,16 @@
   color: white;
 }
 
+.nav-tabs {
+  border: none;
+}
+.nav-link {
+  color: white;
+}
+.nav-link.active {
+  color: blue;
+}
+
 .card-body {
   padding: .25rem;
 }

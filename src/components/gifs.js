@@ -6,7 +6,7 @@ const Gifs = props =>
     <div className="row">
     {props.result.map(gif =>
       <img
-        className="col-sm-6 col-md-4 h-100 pl-sm-1 pr-sm-1"
+        className="col-sm-6 col-md-4 h-100 pr-4 pl-4 pl-sm-1 pr-sm-1 mb-1"
         src={gif.images.fixed_height.url}
         key={gif.id}
         alt={gif.title}

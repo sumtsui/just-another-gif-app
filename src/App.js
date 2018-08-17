@@ -1,3 +1,10 @@
+/*
+TODO
+  - do error handing
+  - move card tag state to app.js
+  - get loading indicator working properly
+*/
+
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
@@ -13,14 +20,8 @@ try {
 } catch (e) {
   console.log('no config file found');
 }
-// let APIKey = '';
-// if (process.env.REACT_APP_APIKEY !== undefined) {
-//   APIKey = process.env.REACT_APP_APIKEY;
-// } else {
-//   APIKey = require('./config');
-// }
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +29,37 @@ class App extends Component {
       loadingResult: false,
       trending: [],
       loadingTrending: true,
-      query: ''
+      query: '',
+      cards: [
+        {
+          isEditing: false,
+          tag: 'Happy',
+          id: 0,
+          gif: {},
+          isLoading: true,
+        },
+        {
+          isEditing: false,
+          tag: 'Dog',
+          id: 1,
+          gif: {},
+          isLoading: true,
+        },
+        {
+          isEditing: false,
+          tag: 'Himym',
+          id: 2,
+          gif: {},
+          isLoading: true,
+        },
+        {
+          isEditing: false,
+          tag: 'Cat',
+          id: 3,
+          gif: {},
+          isLoading: true,
+        },
+      ]
     }
   }
 
@@ -57,10 +88,7 @@ class App extends Component {
     this.setState({ loadingTrending: true });
     fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${APIKey}&limit=12`)
       .then(res => res.json())
-      .then(res => {
-        // console.log(res.data);
-        return res.data;
-      })
+      .then(res => res.data)
       .then(gifs => this.setState({
         trending: gifs,
         loadingTrending: false
@@ -89,7 +117,7 @@ class App extends Component {
               />
             } />
             <Route exact path="/random" render={props =>
-              <Random APIKey={APIKey} />
+              <Random APIKey={APIKey} cards={this.state.cards} />
             }/>
             <Switch>
               <Route exact path="/search" render={props =>
@@ -125,5 +153,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

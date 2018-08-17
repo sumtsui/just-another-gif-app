@@ -10,13 +10,13 @@ const Header = props =>
     </h1>
     <ul className="nav nav-tabs d-flex justify-content-between">
       <li className="nav-item flex-fill">
-        <NavLink className="nav-link" to={`/trending`}>Trending</NavLink>
+        <NavLink className="nav-link text-info" to={`/trending`}>Trending</NavLink>
       </li>
       <li className="nav-item flex-fill">
-        <NavLink className="nav-link" to={`/random`}>Random</NavLink>
+        <NavLink className="nav-link text-info" to={`/random`}>Random</NavLink>
       </li>
       <li className="nav-item flex-fill">
-        <NavLink className="nav-link" to={`/search`}>Search</NavLink>
+        <NavLink className="nav-link text-info" to={`/search`}>Search</NavLink>
       </li>
     </ul>
     </div>
