@@ -8,28 +8,24 @@ class Random extends Component {
       cards: [
         {
           isEditing: false,
-          tag: 'Happy',
           id: 0,
           gif: {},
           isLoading: true,
         },
         {
           isEditing: false,
-          tag: 'Dog',
           id: 1,
           gif: {},
           isLoading: true,
         },
         {
           isEditing: false,
-          tag: 'Himym',
           id: 2,
           gif: {},
           isLoading: true,
         },
         {
           isEditing: false,
-          tag: 'Cat',
           id: 3,
           gif: {},
           isLoading: true,
@@ -39,8 +35,8 @@ class Random extends Component {
   }
 
   componentDidMount() {
-    this.state.cards.forEach(card => {
-      this.getRandom(card.tag, card.id);
+    this.props.cardTags.forEach((tag, i) => {
+      this.getRandom(tag, i);
     });
   }
 
@@ -58,20 +54,6 @@ class Random extends Component {
     });
     // still need work
     if (this.state.cards[id].isEditing === true) this.getRandom(this.state.cards[id].tag, id);
-  }
-
-  handleTagChange = (e, id) => {
-    this.setState({
-      cards: this.state.cards.map(i => {
-        if (i.id === id) {
-          return {
-            ...i,
-            tag: e.target.value
-          }
-        }
-        return i;
-      })
-    })
   }
 
   getRandom = (tag, id) => {
@@ -101,8 +83,9 @@ class Random extends Component {
     return (
       <RandomCards
         cards={this.state.cards}
-        handleTagChange={this.handleTagChange}
+        tags={this.props.cardTags}
         handleClick={this.handleClick}
+        handleTagChange={this.props.handleTagChange}
       />
     )
   }

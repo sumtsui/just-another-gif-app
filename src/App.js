@@ -1,7 +1,6 @@
 /*
 TODO
   - do error handing
-  - move card tag state to app.js
   - get loading indicator working properly
 */
 
@@ -30,36 +29,7 @@ export default class App extends Component {
       trending: [],
       loadingTrending: true,
       query: '',
-      cards: [
-        {
-          isEditing: false,
-          tag: 'Happy',
-          id: 0,
-          gif: {},
-          isLoading: true,
-        },
-        {
-          isEditing: false,
-          tag: 'Dog',
-          id: 1,
-          gif: {},
-          isLoading: true,
-        },
-        {
-          isEditing: false,
-          tag: 'Himym',
-          id: 2,
-          gif: {},
-          isLoading: true,
-        },
-        {
-          isEditing: false,
-          tag: 'Cat',
-          id: 3,
-          gif: {},
-          isLoading: true,
-        },
-      ]
+      cardTags: ['Happy', 'Dog', 'Himym', 'Cat']
     }
   }
 
@@ -102,6 +72,26 @@ export default class App extends Component {
     })
   }
 
+  handleRandomTagChange = (e, id) => {
+    this.setState({
+      cardTags: this.state.cardTags.map(tag => {
+        if (this.state.cardTags.indexOf(tag) === id) {
+          tag = e.target.value;
+        }
+        return tag;
+      })
+      // cardTags: this.state.cardTags.map(tag => {
+      //   if (i.id === id) {
+      //     return {
+      //       ...i,
+      //       tag: e.target.value
+      //     }
+      //   }
+      //   return i;
+      // })
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -117,7 +107,11 @@ export default class App extends Component {
               />
             } />
             <Route exact path="/random" render={props =>
-              <Random APIKey={APIKey} cards={this.state.cards} />
+              <Random
+                APIKey={APIKey}
+                cardTags={this.state.cardTags}
+                handleTagChange={this.handleRandomTagChange}
+              />
             }/>
             <Switch>
               <Route exact path="/search" render={props =>

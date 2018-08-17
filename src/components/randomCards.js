@@ -11,12 +11,12 @@ const randomCards = props =>
               <input
                 type="text"
                 className="form-control"
-                value={card.tag}
+                value={props.tags[index]}
                 onChange={e => props.handleTagChange(e, card.id)}
               />
               :
               <span className="align-self-center" style={{ fontSize: '1.6rem' }}>
-                {card.tag}
+                {props.tags[index]}
               </span>
             }
             <button className="btn btn-outline-secondary" type="button" onClick={() => props.handleClick(card.id)}>
