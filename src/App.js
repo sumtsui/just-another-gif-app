@@ -1,7 +1,6 @@
 /*
 TODO
   - do error handling
-  - get loading indicator working properly
 */
 
 import React, { Component } from 'react';
@@ -73,22 +72,10 @@ export default class App extends Component {
   }
 
   handleRandomTagChange = (e, id) => {
+    let arr = this.state.cardTags;
+    arr[id] = e.target.value;
     this.setState({
-      cardTags: this.state.cardTags.map(tag => {
-        if (this.state.cardTags.indexOf(tag) === id) {
-          tag = e.target.value;
-        }
-        return tag;
-      })
-      // cardTags: this.state.cardTags.map(tag => {
-      //   if (i.id === id) {
-      //     return {
-      //       ...i,
-      //       tag: e.target.value
-      //     }
-      //   }
-      //   return i;
-      // })
+      cardTags: arr
     })
   }
 
@@ -139,8 +126,9 @@ export default class App extends Component {
             </Switch>
             <Route exact path="/" render={() => <Redirect to='/trending' /> }/>
           </div>
-          <footer>
+          <footer className='d-flex flex-column'>
             <span>sumtsui ☺ {new Date().getFullYear()}</span>
+            <a className='mt-4' href='https://github.com/sumtsui/just-another-gif-app'>GitHub</a>
           </footer>
         </div>
       </BrowserRouter>
